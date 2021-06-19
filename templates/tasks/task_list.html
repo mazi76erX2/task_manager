@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <main class="task-detail">
+    <h1>Welcome {{ user }}</h1>
+
+    <h2>Create Task:</h2>
+    <a href="{% url 'task-create' %}" class="btn btn-success">New Task</a>
+
+    <h2>Your Tasks:</h2>
+
+    <h3>Not completed</h3>
+    {% if tasks_assigned_to_user_not_completed %}
+      {% for task in tasks_assigned_to_user_not_completed %}
+        <div class="card tasks" style="width: 85%;">
+          <div class="card-header">
+            {{ task.name }}
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Due date: {{ task.due_date }}</li>
+            <li class="list-group-item">Priority Level: {{ task.priority_level }}</li>
+            <li class="list-group-item">Description: {{ task.description }}</li>
+            <li class="list-group-item">Completed: {{ task.completed }}</li>
+            <li class="list-group-item">
+              <a href="{% url 'task-detail' task.pk %}" class="btn btn-warning">View</a>
+              <a href="{% url 'task-detail' task.pk %}" class="btn btn-primary">Edit</a>
+              <a href="#" class="btn btn-danger">Delete</a>
+            </li>
+          </ul>
+        </div>
+      {% endfor %}
+    {% endif %}
+    
+    <hr class="solid">
+
+    <h3>Completed</h3>
+    {% if tasks_assigned_to_user_completed %}
+      {% for task in tasks_assigned_to_user_completed %}
+        <div class="card tasks" style="width: 85%;">
+          <div class="card-header">
+            {{ task.name }}
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Due date: {{ task.due_date }}</li>
+            <li class="list-group-item">Priority Level: {{ task.priority_level }}</li>
+            <li class="list-group-item">Description: {{ task.description }}</li>
+            <li class="list-group-item">Completed: {{ task.completed }}</li>
+            <li class="list-group-item">
+              <a href="{% url 'task-detail' task.pk %}" class="btn btn-warning">View</a>
+              <a href="#" class="btn btn-primary">Edit</a>
+              <a href="#" class="btn btn-danger">Delete</a>
+            </li>
+          </ul>
+        </div>
+      {% endfor %}
+    {% endif %}    
+
+    <hr class="solid">
+    <h2>Tasks you've assigned:</h2>
+    {% if assigned_tasks %}
+      {% for task in assigned_tasks %}
+        <div class="card tasks" style="width: 85%;">
+          <div class="card-header">
+            {{ task.name }}
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Assignee: {{ task.assignee }}</li>
+            <li class="list-group-item">Due date: {{ task.due_date }}</li>
+            <li class="list-group-item">Priority Level: {{ task.priority_level }}</li>
+            <li class="list-group-item">Description: {{ task.description }}</li>
+            <li class="list-group-item">Completed: {{ task.completed }}</li>
+            <li class="list-group-item">
+              <a href="{% url 'task-detail' task.pk %}" class="btn btn-warning">View</a>
+              <a href="#" class="btn btn-primary">Edit</a>
+              <a href="#" class="btn btn-danger">Delete</a>
+            </li>
+          </ul>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+
+    <hr class="solid">
+    <h2>Other Tasks:</h2>
+
+      {% for task in other_tasks %}
+        <div class="card tasks" style="width: 85%;">
+          <div class="card-header">
+            {{ task.name }}
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Assigner: {{ task.assigner }}</li>
+            <li class="list-group-item">Assignee: {{ task.assignee }}</li>
+            <li class="list-group-item">Due date: {{ task.due_date }}</li>
+            <li class="list-group-item">Priority Level: {{ task.priority_level }}</li>
+            <li class="list-group-item">Description: {{ task.description }}</li>
+            <li class="list-group-item">Completed: {{ task.completed }}</li>
+            <li class="list-group-item">
+              <a href="{% url 'task-detail' task.pk %}" class="btn btn-warning">View</a>
+              <a href="#" class="btn btn-primary">Edit</a>
+              <a href="#" class="btn btn-danger">Delete</a>
+            </li>
+          </ul>
+        </div>
+      {% endfor %}
+
+{% endblock content %} 

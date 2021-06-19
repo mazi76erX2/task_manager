@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+<div class="container">
+  <header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="{% url 'home' %}" class="nav-link active" aria-current="page">Home</a></li>
+      <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Log Out</a></li>
+    </ul>
+  </header>
+  {% block content %}{% endblock content %}
+</div>
