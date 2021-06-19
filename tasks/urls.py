@@ -13,4 +13,6 @@ urlpatterns = [
          TaskCreateView.as_view()), name='task-create'),
     path('task/update/<int:pk>/', login_required(
          TaskCreateView.as_view()), name='task-edit'),
+    path('task/delete/<int:pk>/', login_required(
+         TaskCreateView.as_view()), name='task-delete'),
 ]
